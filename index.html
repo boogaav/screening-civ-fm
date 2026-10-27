@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BOOGA Screeming Room</title>
+<meta name="description" content="BOOGA's 2026 music videos: Berlin Calling, Pretend, Дніпро Кобзаря and Champion, with English lyric subtitles.">
+<meta property="og:title" content="BOOGA Screeming Room">
+<meta property="og:description" content="BOOGA's 2026 music videos: Berlin Calling, Pretend, Дніпро Кобзаря and Champion, with English lyric subtitles.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://screening.civ.fm/">
+<meta property="og:image" content="https://screening.civ.fm/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0b0a'/%3E%3Cpath d='M7 24V8h4l5 9 5-9h4v16h-4V15l-5 8-5-8v9z' fill='%23ece6dc'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a screening-room program. Each film is a reel with its own accent, shown in its native aspect,
+   with a slate of facts beside it and a seekable frame strip under it. Single dark theme by choice. */
+:root{
+  --ground:#0c0b0a; --ground-2:#151311; --ink:#ece6dc; --ink-2:#a39a8d; --ink-3:#6b645b; --rule:#2a2622;
+  --accent:#e8e0d0;
+  --hat:#f6c445; --vest:#ff6b1f; --skin:#e2ae86; --denim:#33456a; --boot:#1b1a19; --stripe:#f3efe6;
+  --display:"Alumni Sans","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* masthead */
+.mast{padding-block:56px 40px;display:grid;gap:28px;border-bottom:1px solid var(--rule)}
+.mast .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);display:flex;gap:18px;flex-wrap:wrap}
+.mast h1{font-family:var(--display);font-weight:900;font-size:clamp(64px,13vw,168px);line-height:.82;letter-spacing:-.01em;margin:0;text-transform:uppercase;text-wrap:balance}
+.mast{overflow:clip}
+.mast h1{position:relative}
+.mast h1 .room{display:block;color:transparent;-webkit-text-stroke:1.5px var(--ink-2)}
+.mast .eyebrow .replay{all:unset;cursor:pointer;color:var(--ink-3);transition:color .2s}
+.mast .eyebrow .replay:hover,.mast .eyebrow .replay:focus-visible{color:var(--ink)}
+.mast .eyebrow .replay[disabled]{opacity:.4;cursor:default}
+
+/* the letter crew: tiny workers swap the N for an M on load */
+.mast h1 .word{white-space:nowrap}
+.slot{position:relative;display:inline-block;white-space:nowrap}
+.slot .g-n{position:absolute;left:0;top:0;display:none}
+.slot .bl,.slot .nb{display:inline-block;width:0;height:0}
+.slot.swap .g-n{display:inline}
+.crew{position:absolute;inset:0;pointer-events:none;z-index:2;text-transform:none;letter-spacing:0}
+.crew>*{position:absolute;left:0;top:0;will-change:transform}
+.worker{width:.14em;height:.26em}
+.worker .fig{width:100%;height:100%;display:block;overflow:visible}
+.worker .fig *{transform-box:fill-box}
+.worker .leg{transform-origin:50% 0}
+.worker .arm{transform-origin:50% 8%;transition:transform .25s ease}
+.worker.walk .fig{animation:bob .19s ease-in-out infinite alternate}
+.worker.walk .leg.l{animation:swing .38s ease-in-out infinite alternate}
+.worker.walk .leg.r{animation:swing .38s ease-in-out infinite alternate-reverse}
+.worker.walk .arm.l{animation:swing-s .38s ease-in-out infinite alternate-reverse}
+.worker.walk .arm.r{animation:swing-s .38s ease-in-out infinite alternate}
+.worker.push.walk .arm{animation:none}
+.worker.lift .arm{transform:rotate(172deg)}
+.worker.point .arm.r{transform:rotate(-135deg)}
+.worker.push .arm{transform:rotate(-82deg)}
+.worker.cheer .arm.l{transform:rotate(150deg)}
+.worker.cheer .arm.r{transform:rotate(-150deg)}
+.worker.cheer .fig{animation:hop .32s ease-out 2 alternate}
+.worker .tool{display:none}
+.worker.hammer .tool{display:inline}
+.worker.hammer .arm.r{animation:hammer .22s ease-in infinite alternate}
+@keyframes bob{to{transform:translateY(-4%)}}
+@keyframes swing{from{transform:rotate(24deg)}to{transform:rotate(-24deg)}}
+@keyframes swing-s{from{transform:rotate(18deg)}to{transform:rotate(-18deg)}}
+@keyframes hammer{from{transform:rotate(-160deg)}to{transform:rotate(-55deg)}}
+@keyframes hop{to{transform:translateY(-22%)}}
+.hook{width:.05em;height:.07em}
+.hook::before{content:"";position:absolute;left:calc(50% - 1px);bottom:92%;width:2px;height:40em;background:var(--ink-3)}
+.hook svg{width:100%;height:100%;display:block;overflow:visible}
+.cone{width:.07em;height:.08em}
+.cone svg{width:100%;height:100%;display:block}
+.bubble{font:500 12px/1.2 var(--mono);letter-spacing:.02em;background:var(--ink);color:var(--ground);padding:6px 9px;border-radius:3px;white-space:nowrap}
+.bubble::after{content:"";position:absolute;left:12px;top:100%;border:5px solid transparent;border-top-color:var(--ink)}
+.puff{width:.035em;height:.035em;border-radius:50%;background:var(--ink-2)}
+.spark{width:.03em;height:2px;background:var(--hat);border-radius:1px}
+.mast p{max-width:56ch;margin:0;color:var(--ink-2);font-size:16px}
+
+/* program index */
+.index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule)}
+.index a{display:grid;gap:6px;padding:18px 16px 20px;text-decoration:none;border-left:1px solid var(--rule);position:relative;transition:background .2s}
+.index a:first-child{border-left:0;padding-left:0}
+.index a::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.index a:hover::before,.index a:focus-visible::before{transform:scaleX(1)}
+.index .t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1;text-transform:uppercase}
+.index .m{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+@media (max-width:720px){.index{grid-template-columns:repeat(2,minmax(0,1fr))}.index a:nth-child(3){border-left:0;padding-left:0}.index a:nth-child(n+3){border-top:1px solid var(--rule)}}
+
+/* reels */
+.reel{--c:var(--accent);padding-block:72px;border-bottom:1px solid var(--rule);display:grid;gap:28px}
+.reel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.reel h2{font-family:var(--display);font-weight:900;font-size:clamp(56px,9vw,112px);line-height:.85;margin:0;text-transform:uppercase;text-wrap:balance}
+.reel h2 small{display:block;font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.14em;color:var(--c);margin-bottom:12px}
+.logline{max-width:46ch;margin:0;font-size:17px;color:var(--ink);text-wrap:pretty}
+
+.body{display:grid;gap:28px;grid-template-columns:minmax(0,1fr) 260px;align-items:start}
+.reel.vertical .body{grid-template-columns:minmax(0,380px) minmax(0,1fr)}
+@media (max-width:860px){.body,.reel.vertical .body{grid-template-columns:minmax(0,1fr)}}
+
+/* screen */
+.screen{position:relative;background:#000;overflow:hidden;aspect-ratio:var(--ar);max-width:100%;border-radius:2px;cursor:pointer;isolation:isolate}
+.reel.vertical .screen{max-width:380px;width:100%;margin-inline:auto}
+.screen img,.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.screen video.film{object-fit:contain;background:#000}
+.screen .loop{opacity:0;transition:opacity .5s}
+.screen.looping .loop{opacity:1}
+.screen .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0) 46%);pointer-events:none;transition:opacity .3s}
+.screen .play{position:absolute;left:18px;bottom:16px;display:flex;align-items:center;gap:12px;border:0;background:none;color:#fff;font:500 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:0}
+.screen .play i{width:46px;height:46px;border-radius:50%;background:var(--c);display:grid;place-items:center;transition:transform .25s}
+.screen .play i::after{content:"";border-left:13px solid #0c0b0a;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.screen:hover .play i{transform:scale(1.08)}
+.screen .rt{position:absolute;right:16px;bottom:20px;color:rgba(255,255,255,.8);font:400 12px/1 var(--mono);font-variant-numeric:tabular-nums}
+.screen.playing{cursor:default}
+.screen.playing .veil,.screen.playing .play,.screen.playing .rt,.screen.playing img,.screen.playing .loop{display:none}
+.screen .pending{position:absolute;left:18px;bottom:20px;font:400 12px/1 var(--mono);color:rgba(255,255,255,.75)}
+
+/* slate */
+.slate{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px 18px;margin:0;font-size:14px;align-content:start}
+.slate dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.slate dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.slate .note{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:14px;margin-top:6px;color:var(--ink-2);font-size:14px;max-width:60ch}
+.reel.vertical .side{display:grid;gap:28px;align-content:start}
+
+/* frame strip */
+.strip{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
+.strip button{all:unset;cursor:pointer;position:relative;aspect-ratio:var(--sar);background-image:var(--sprite);background-size:1000% 100%;background-position:calc(var(--i) * 100% / 9) 0;opacity:.55;transition:opacity .2s, transform .2s;border-radius:1px}
+.strip button:hover,.strip button:focus-visible{opacity:1;transform:translateY(-2px)}
+.strip button:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.strip button span{position:absolute;left:4px;bottom:3px;font:400 10px/1 var(--mono);color:#fff;text-shadow:0 1px 2px #000;font-variant-numeric:tabular-nums}
+.strip button.now{opacity:1;box-shadow:0 -2px 0 var(--c) inset}
+.strip-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.reel.vertical .strip{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:560px){.strip{grid-template-columns:repeat(5,minmax(0,1fr))}.strip button span{font-size:9px}}
+
+/* subtitles */
+.cc-toggle{justify-self:start;display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid var(--rule);color:var(--ink-2);font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:9px 14px 9px 9px;cursor:pointer;border-radius:2px;transition:border-color .2s,color .2s}
+.cc-toggle b{font-weight:500;padding:4px 6px;border:1px solid currentColor;border-radius:2px;letter-spacing:.04em}
+.cc-toggle[aria-pressed="true"]{color:var(--ink);border-color:var(--ink-3)}
+.cc-toggle[aria-pressed="true"] b{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.cc-toggle:hover{border-color:var(--ink-2)}
+video::cue{font-family:var(--body);font-size:.92em;line-height:1.35;color:#fff;background:rgba(0,0,0,.62)}
+
+/* closing call to action */
+.cta{padding-block:88px 80px;border-bottom:1px solid var(--rule);display:grid;gap:22px;justify-items:start}
+.cta .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.cta h2{font-family:var(--display);font-weight:900;font-size:clamp(48px,8vw,104px);line-height:.86;margin:0;text-transform:uppercase;text-wrap:balance}
+.cta h2 span{color:transparent;-webkit-text-stroke:1.5px var(--ink-2)}
+.cta p{margin:0;color:var(--ink-2);max-width:48ch;font-size:16px}
+.cta a.btn{display:inline-flex;align-items:center;gap:14px;text-decoration:none;background:var(--ink);color:var(--ground);font:500 14px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:16px 22px 16px 18px;border-radius:2px;transition:transform .2s}
+.cta a.btn:hover{transform:translateY(-2px)}
+.cta a.btn svg{width:20px;height:20px}
+.cta .handle{font-family:var(--mono);font-size:13px;color:var(--ink-3);user-select:all}
+
+footer{padding-block:40px 64px;color:var(--ink-3);font-family:var(--mono);font-size:12px;letter-spacing:.06em;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.screen .loop{display:none}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><span>BOOGA</span><span>Music videos</span><span>2026</span><span>4 films · 8 min 33 s</span><button type="button" class="replay" id="replay" hidden>Rebuild the title ↻</button></div>
+    <h1 id="title" aria-label="Screeming Room"><span class="word" aria-hidden="true">Scree<span class="slot" id="slot"><span class="g-n">N<i class="nb"></i></span><span class="g-m">M</span><i class="bl"></i></span>ing</span><span class="room" aria-hidden="true">Room</span></h1>
+    <p>Four songs, four worlds. Each film is written, scored and cut by booga, with every frame made by generative cameras. Every track was produced on Suno Pro. Hover a screen for a preview; press play for sound. Every film carries English subtitles for the lyrics.</p>
+    <button type="button" class="cc-toggle" id="cc" aria-pressed="true"><b>CC</b><span>English subtitles on</span></button>
+  </header>
+  <nav class="index" id="index"></nav>
+  <main id="reels"></main>
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="eyebrow">After the credits</div>
+    <h2 id="cta-h">The next one<br><span>drops on Instagram</span></h2>
+    <p>Behind-the-scenes cuts, works in progress and the next film first. Follow along.</p>
+    <a class="btn" href="https://www.instagram.com/boogaav/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>Follow @boogaav</a>
+    <span class="handle">instagram.com/boogaav</span>
+  </section>
+  <footer><span>© 2026 BOOGA</span><span>Music produced on Suno Pro · Frames by generative video models</span></footer>
+</div>
+
+<script>
+// Full-length films, served next to the page.
+const SRC = {
+  berlin:"films/berlin_v.mp4",
+  pretend:"films/pretend.mp4",
+  dnipro:"films/dnipro5.mp4",
+  champion:"films/champion.mp4"
+};
+
+// English lyric subtitles (WebVTT), built by subs/build_vtt.py.
+const VTT = {"berlin_v": "WEBVTT\n\n00:00:11.800 --> 00:00:15.700 line:8%\nBerlin is calling, calling me\n\n00:00:15.700 --> 00:00:20.200 line:8%\nBerlin is calling, calling you\n\n00:00:20.200 --> 00:00:24.200 line:8%\nBerlin is calling, calling us\n\n00:00:24.200 --> 00:00:27.400 line:8%\nReversible surprise\n\n00:00:43.600 --> 00:00:48.300 line:8%\nBerlin is calling, calling her\n\n00:00:48.300 --> 00:00:52.200 line:8%\nBerlin is calling, calling him\n\n00:00:52.200 --> 00:00:56.700 line:8%\nBerlin is calling, calling them\n\n00:00:56.700 --> 00:01:00.300 line:8%\nEmotional tandem\n\n00:01:37.100 --> 00:01:41.200 line:8%\nBerlin is calling, calling peace\n\n00:01:41.200 --> 00:01:45.400 line:8%\nBerlin is calling, calling cease\n\n00:01:45.400 --> 00:01:49.300 line:8%\nBerlin is calling, calling love\n\n00:01:49.300 --> 00:01:54.000 line:8%\nBerlin is calling, calling now\n", "pretend": "WEBVTT\n\n00:00:00.740 --> 00:00:03.350\nI want simple things\n\n00:00:03.400 --> 00:00:07.400\nI want to have food every day\n\n00:00:08.340 --> 00:00:09.390\nClean water\n\n00:00:09.440 --> 00:00:11.590\nClear air\n\n00:00:11.640 --> 00:00:13.730\nSmall roof\n\n00:00:13.780 --> 00:00:17.780\nAnd shoes pair\n\n00:00:20.790 --> 00:00:22.710\nI want to be alive\n\n00:00:22.760 --> 00:00:23.930\nI want to be free\n\n00:00:23.980 --> 00:00:25.310\nI want to be healthy\n\n00:00:25.360 --> 00:00:26.570\nI want to be drug free\n\n00:00:26.620 --> 00:00:27.970\nI want to have meaning\n\n00:00:28.020 --> 00:00:29.270\nIn my daily routine\n\n00:00:29.320 --> 00:00:31.130\nI want to be useful\n\n00:00:31.180 --> 00:00:32.190\nI want to be seen\n\n00:00:32.240 --> 00:00:33.870\nI wanna help elders\n\n00:00:33.920 --> 00:00:35.030\nI want to teach kids\n\n00:00:35.080 --> 00:00:36.330\nI want to be able\n\n00:00:36.380 --> 00:00:37.330\nTo play with you blitz\n\n00:00:37.380 --> 00:00:39.310\nI want feel respected\n\n00:00:39.360 --> 00:00:40.550\nWherever I go\n\n00:00:40.600 --> 00:00:42.150\nI want be connected\n\n00:00:42.200 --> 00:00:43.630\nWhoever I meet\n\n00:00:43.680 --> 00:00:44.650\nDon't make me rejected\n\n00:00:44.700 --> 00:00:46.070\nBecause of your law\n\n00:00:46.120 --> 00:00:47.650\nIf I am not injected\n\n00:00:47.700 --> 00:00:48.770\nI follow the flow\n\n00:00:48.820 --> 00:00:50.150\nBecause I don't know\n\n00:00:50.200 --> 00:00:51.290\nOr I don't understand\n\n00:00:51.340 --> 00:00:53.230\nListen my brother\n\n00:00:53.280 --> 00:00:54.510\nDon't try to pretend\n\n00:00:54.560 --> 00:00:56.030\nPretend world is peaceful\n\n00:00:56.080 --> 00:00:57.290\nPretend world is safe\n\n00:00:57.340 --> 00:00:58.650\nPretend there no hunger\n\n00:00:58.700 --> 00:01:00.030\nPretend there no dead\n\n00:01:00.080 --> 00:01:01.230\nPretend that the system\n\n00:01:01.280 --> 00:01:03.110\nis all what we need\n\n00:01:03.160 --> 00:01:04.060\nPretended that a wisdom\n\n00:01:04.000 --> 00:01:05.570\nOnly thing to complete\n\n00:01:05.620 --> 00:01:08.350\nPretend information will lift you from stress\n\n00:01:08.400 --> 00:01:11.030\nPretend only money will give you success\n\n00:01:11.080 --> 00:01:13.910\nPretend that in churches you can only be blessed\n\n00:01:13.960 --> 00:01:17.910\nThe only you need is invoice to confess\n", "dnipro5": "WEBVTT\n\n00:00:34.468 --> 00:00:38.138\nIn the wild steppes\n\n00:00:38.138 --> 00:00:41.888\nAre you a mouse or a bird?\n\n00:00:41.888 --> 00:00:45.559\nIn the wild steppes\n\n00:00:45.559 --> 00:00:49.309\nOr do you ride with the Cossacks?\n\n00:00:49.309 --> 00:00:51.383\nIn the wild steppes\n\n00:00:51.383 --> 00:00:56.649\nI'm a simple monk\n\n00:00:56.649 --> 00:00:59.202\nIn the wild steppes\n\n00:00:59.202 --> 00:01:03.000\nA stray, and fear\n\n00:01:33.590 --> 00:01:35.665\nIn the wild steppes\n\n00:01:35.665 --> 00:01:40.931\nI wandered as a kobzar\n\n00:01:40.931 --> 00:01:43.005\nIn the wild steppes\n\n00:01:43.005 --> 00:01:47.793\nIn my dear Ukraine,\n\n00:01:47.793 --> 00:01:51.383\nSo the wide-spread fields,\n\n00:01:51.383 --> 00:01:55.053\nThe Dnipro and its steep banks\n\n00:01:55.053 --> 00:01:58.723\nCould be seen, could be heard,\n\n00:01:58.723 --> 00:02:04.957\nAs the mighty river roars.\n\n00:02:17.000 --> 00:02:20.700\nCould be seen, could be heard,\n\n00:02:20.700 --> 00:02:27.000\nAs the mighty river roars.\n", "champion": "WEBVTT\n\n00:00:16.596 --> 00:00:20.505\nI woke up this morning\n\n00:00:20.505 --> 00:00:24.415\nScratched my balls\n\n00:00:24.415 --> 00:00:28.165\nI look at the clock\n\n00:00:28.165 --> 00:00:32.793\nStill early morning\n\n00:00:32.793 --> 00:00:36.463\nI pulled out a hundred\n\n00:00:36.463 --> 00:00:40.372\nAnd took a hit off the vape\n\n00:00:40.372 --> 00:00:50.372\nWorld, I'm ready. I'm a champion\n\n00:01:04.069 --> 00:01:05.266\nI opened Claude\n\n00:01:05.266 --> 00:01:11.410\nAnd gave it a prompt\n\n00:01:11.410 --> 00:01:15.080\nAnd it answered with silence\n\n00:01:15.080 --> 00:01:19.707\n'Cause my subscription's fucked\n\n00:01:19.707 --> 00:01:20.904\nAnd still\n\n00:01:20.904 --> 00:01:22.181\nI take off\n\n00:01:22.181 --> 00:01:24.096\nNothing can stop me\n\n00:01:24.096 --> 00:01:27.926\nI'm a Boeing in flight. Impossible to forget\n\n00:01:27.926 --> 00:01:31.277\nI pulled out a hundred\n\n00:01:31.277 --> 00:01:35.186\nAnd took a hit off the vape\n\n00:01:35.186 --> 00:01:44.372\nWorld, I'm ready. I'm a champion\n"};
+
+const FILMS = [
+  {id:"berlin", file:"berlin_v", title:"Berlin Calling", orig:"", c:"#ff3b30", vertical:true, ar:"720/1290", sar:"120/214",
+   dur:126.9, date:"May 2026", aspect:"9:16 vertical", version:"v5 final",
+   tools:"Kling image-to-video", logline:"A red phone rings in Shanghai, Kyiv, Los Angeles and a London call box. Whoever picks up ends the night in the same Berlin basement.",
+   note:"Built as a vertical piece for phones. Every verse passes the call to someone new: me, you, us, him, them. The last chorus is everyone in one red room."},
+  {id:"pretend", file:"pretend", title:"Pretend", orig:"", c:"#5fd3d0", ar:"16/9", sar:"16/9",
+   dur:97.8, date:"September 2026", aspect:"16:9", version:"Final, lip sync fixed",
+   tools:"Seedance 2.0 shots, hand cut in CapCut", logline:"In a city that counts everyone, one man without the implant keeps playing along.",
+   note:"Grey uniforms, glowing badges, a face on every screen. The song asks how long you can pretend; the film answers with a man who never gets counted."},
+  {id:"dnipro", file:"dnipro5", title:"Дніпро Кобзаря", orig:"The Kobzar's Dnipro", c:"#d9b36a", ar:"16/9", sar:"16/9",
+   dur:167.6, date:"October 2026", aspect:"16:9", version:"v05 final",
+   tools:"55 Kling 2.6 image-to-video shots at 1080p", logline:"A sixteenth-century kobzar crosses the golden steppe on foot and reaches Kyiv by ferry across the Dnipro.",
+   note:"Wild horses, a campfire at dusk, riders across burning grass, the Dnipro rapids. The second verse quotes Shevchenko's Заповіт, and the film ends with a ferry landing at the Kyiv wharf and an aerial pull back over the river."},
+  {id:"champion", file:"champion", title:"Champion", orig:"Чемпіон", c:"#ffb03a", ar:"16/9", sar:"16/9",
+   dur:121.0, date:"October 2026", aspect:"4:3 reality, 2.39:1 fantasy", version:"v5",
+   coauthors:"Nikita &amp; Natali", tools:"GPT-image frames from one reference, Kling image-to-video", logline:"07:12. A broke man asks his AI to tell him he is a champion, hits the paywall, and crowns himself anyway.",
+   note:"Reality is a teal-grey 4:3 room. The fantasy opens up to golden widescreen: a saucepan for a helmet, a towel for a cape, a cardboard crowd. The clock never leaves 07:12."}
+];
+
+const tc = s => { s=Math.max(0,Math.round(s)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const idx = document.getElementById("index"), reels = document.getElementById("reels");
+let current = null;
+
+// One switch for English subtitles across every film; remembered per viewer.
+const films = [];
+let subsOn = true;
+try { subsOn = localStorage.getItem("subs") !== "off"; } catch (e) {}
+const ccBtn = document.getElementById("cc");
+const applySubs = v => { for (const t of v.textTracks) t.mode = subsOn ? "showing" : "hidden"; };
+const paintCC = () => { ccBtn.setAttribute("aria-pressed", subsOn); ccBtn.querySelector("span").textContent = "English subtitles " + (subsOn ? "on" : "off"); };
+ccBtn.addEventListener("click", () => {
+  subsOn = !subsOn; paintCC(); films.forEach(applySubs);
+  try { localStorage.setItem("subs", subsOn ? "on" : "off"); } catch (e) {}
+});
+paintCC();
+
+FILMS.forEach(f => {
+  const a = document.createElement("a");
+  a.href = "#"+f.id; a.style.setProperty("--c", f.c);
+  a.innerHTML = `<span class="t"></span><span class="m">${tc(f.dur)} · ${f.date}</span>`;
+  a.querySelector(".t").textContent = f.title;
+  idx.append(a);
+
+  const s = document.createElement("section");
+  s.className = "reel"+(f.vertical?" vertical":""); s.id = f.id; s.style.setProperty("--c", f.c);
+  const frames = Array.from({length:10},(_,i)=>`<button type="button" style="--i:${i}" data-t="${(i*f.dur/10+0.4).toFixed(1)}" aria-label="Play from ${tc(i*f.dur/10)}"><span>${tc(i*f.dur/10)}</span></button>`).join("");
+  const screen = `<div class="screen" style="--ar:${f.ar}" tabindex="-1">
+      <img src="${f.file}_poster.jpg" alt="${f.title}, still frame" loading="lazy">
+      <video class="loop" src="${f.file}_loop.mp4" muted loop playsinline preload="none"></video>
+      <div class="veil"></div>
+      <button type="button" class="play"><i></i>Play film</button>
+      <span class="rt">${tc(f.dur)}</span>
+    </div>`;
+  const slate = `<dl class="slate">
+      <dt>Released</dt><dd>${f.date}</dd>
+      <dt>Runtime</dt><dd>${tc(f.dur)}</dd>
+      <dt>Aspect</dt><dd>${f.aspect}</dd>
+      <dt>Cut</dt><dd>${f.version}</dd>
+      <dt>Music</dt><dd>Produced on Suno Pro</dd>
+      ${f.coauthors ? `<dt>Music track co-authors</dt><dd>${f.coauthors}</dd>` : ""}
+      <dt>Made with</dt><dd>${f.tools}</dd>
+      <dd class="note"></dd>
+    </dl>`;
+  const strip = `<div><div class="strip-label">Scenes</div><div class="strip" style="--sar:${f.sar};--sprite:url(${f.file}_strip.jpg)">${frames}</div></div>`;
+  s.innerHTML = `<div class="reel-head"><h2><small>${f.date.toUpperCase()} · ${tc(f.dur)}</small><span class="ttl"></span></h2><p class="logline"></p></div>
+    <div class="body">${f.vertical ? screen + `<div class="side">${slate}${strip}</div>` : screen + slate}</div>
+    ${f.vertical ? "" : strip}`;
+  s.querySelector(".ttl").textContent = f.title;
+  if (f.orig) { const o=document.createElement("small"); o.style.cssText="display:block;margin:10px 0 0;color:var(--ink-2)"; o.textContent=f.orig; s.querySelector("h2").append(o); }
+  s.querySelector(".logline").textContent = f.logline;
+  s.querySelector(".note").textContent = f.note;
+  reels.append(s);
+  wire(s, f);
+});
+
+function wire(s, f){
+  const scr = s.querySelector(".screen"), loop = scr.querySelector(".loop"), btn = scr.querySelector(".play");
+  const marks = [...s.querySelectorAll(".strip button")];
+  let film = null;
+  if (!SRC[f.id]) { btn.hidden = true; const p=document.createElement("span"); p.className="pending"; p.textContent="Full film uploading"; scr.append(p); }
+  const startLoop = () => { if (reduce || film) return; loop.preload="auto"; loop.play().then(()=>scr.classList.add("looping")).catch(()=>{}); };
+  const stopLoop = () => { scr.classList.remove("looping"); loop.pause(); };
+  scr.addEventListener("pointerenter", e => { if (e.pointerType==="mouse") startLoop(); });
+  scr.addEventListener("pointerleave", e => { if (e.pointerType==="mouse") stopLoop(); });
+  if (!matchMedia("(hover: hover)").matches && "IntersectionObserver" in window)
+    new IntersectionObserver(es => es.forEach(en => en.isIntersecting ? startLoop() : stopLoop()), {threshold:.6}).observe(scr);
+
+  const play = (t=0) => {
+    if (!SRC[f.id]) return;
+    if (current && current !== stop) current();
+    stopLoop();
+    if (!film) {
+      film = document.createElement("video");
+      film.className = "film"; film.controls = true; film.playsInline = true; film.preload = "auto";
+      film.poster = f.file+"_poster.jpg";
+      const tr = document.createElement("track");
+      tr.kind = "subtitles"; tr.srclang = "en"; tr.label = "English"; tr.src = URL.createObjectURL(new Blob([VTT[f.file]], {type:"text/vtt"})); tr.default = subsOn;
+      film.append(tr); film.src = SRC[f.id];
+      scr.append(film); films.push(film); applySubs(film);
+      film.addEventListener("timeupdate", () => {
+        const k = Math.min(9, Math.floor(film.currentTime / (f.dur/10)));
+        marks.forEach((m,i)=>m.classList.toggle("now", i===k));
+      });
+    }
+    scr.classList.add("playing");
+    const go = () => { if (t) film.currentTime = t; film.play().catch(()=>{}); };
+    film.readyState >= 1 ? go() : film.addEventListener("loadedmetadata", go, {once:true});
+    current = stop;
+  };
+  const stop = () => { if (film) film.pause(); };
+  scr.addEventListener("click", e => { if (!scr.classList.contains("playing")) play(); });
+  marks.forEach(m => m.addEventListener("click", () => { play(parseFloat(m.dataset.t)); scr.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}); }));
+}
+
+if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+</script>
+
+<script>
+// The letter crew. On load three tiny workers swap the N in SCREENING for an M:
+// a crane hoists the N away, one worker pushes ING over to make room, the M is lowered in and hammered home.
+(() => {
+  const h1 = document.getElementById("title"), slot = document.getElementById("slot");
+  const gN = slot.querySelector(".g-n"), gM = slot.querySelector(".g-m"), bl = slot.querySelector(".bl");
+  const word = h1.querySelector(".word"), replay = document.getElementById("replay");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !Element.prototype.animate) return;
+
+  const FIG = `<svg class="fig" viewBox="0 0 24 44" aria-hidden="true">
+    <g class="leg l"><rect x="8" y="28" width="3.4" height="13" fill="var(--denim)"/><rect x="6.6" y="40" width="5.2" height="3.2" rx="1" fill="var(--boot)"/></g>
+    <g class="leg r"><rect x="12.6" y="28" width="3.4" height="13" fill="var(--denim)"/><rect x="12.4" y="40" width="5.2" height="3.2" rx="1" fill="var(--boot)"/></g>
+    <g class="arm l"><rect x="4" y="17" width="3.2" height="11" rx="1.6" fill="var(--vest)"/><circle cx="5.6" cy="28.6" r="1.7" fill="var(--skin)"/></g>
+    <rect x="6.5" y="16" width="11" height="14" rx="2.2" fill="var(--vest)"/>
+    <rect x="6.5" y="23.4" width="11" height="1.8" fill="var(--stripe)"/>
+    <circle cx="12" cy="11" r="4.6" fill="var(--skin)"/><circle cx="14.4" cy="11.6" r=".75" fill="var(--boot)"/>
+    <path d="M6.7 9.6a5.3 5.3 0 0 1 10.6 0z" fill="var(--hat)"/><rect x="5.4" y="8.9" width="13.4" height="1.7" rx=".85" fill="var(--hat)"/>
+    <g class="arm r"><rect x="16.8" y="17" width="3.2" height="11" rx="1.6" fill="var(--vest)"/><circle cx="18.4" cy="28.6" r="1.7" fill="var(--skin)"/>
+      <g class="tool"><rect x="17.7" y="27" width="1.4" height="8" fill="#8a6a48"/><rect x="15.6" y="34" width="5.6" height="3" rx=".6" fill="#9aa3ad"/></g></g>
+  </svg>`;
+  const HOOK = `<svg viewBox="0 0 10 14" aria-hidden="true"><rect x="3" y="0" width="4" height="4" rx="1" fill="var(--ink-2)"/><path d="M5 4v4.5a3 3 0 1 1-3-3" fill="none" stroke="var(--ink-2)" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+  const CONE = `<svg viewBox="0 0 10 12" aria-hidden="true"><path d="M3.6 0h2.8L9 10.5H1z" fill="var(--vest)"/><path d="M2.6 5h4.8l.7 2.4H1.9z" fill="var(--stripe)"/><rect x="0" y="10.4" width="10" height="1.6" rx=".5" fill="var(--vest)"/></svg>`;
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  // fonts.ready can settle before the display face is even requested, so ask for it by name.
+  const fontLoaded = () => Promise.race([document.fonts.load('900 100px "Alumni Sans"').catch(() => {}), wait(3000)]).then(() => document.fonts.ready);
+  // Sit the absolutely placed N on the same baseline as the letters around it.
+  const alignN = () => {
+    const fs = parseFloat(getComputedStyle(h1).fontSize);
+    gN.style.top = "0";
+    gN.style.top = ((bl.getBoundingClientRect().top - gN.querySelector(".nb").getBoundingClientRect().top) / fs) + "em";
+    slot.style.width = (gN.getBoundingClientRect().width / fs) + "em";
+  };
+  const T = (x, y, extra = "") => `translate(${x}px,${y}px) ${extra}`;
+  let running = false;
+
+  async function run() {
+    if (running) return; running = true; replay.disabled = true;
+    await fontLoaded();
+    const fs = parseFloat(getComputedStyle(h1).fontSize);
+    const box = h1.getBoundingClientRect();
+    slot.classList.add("swap"); gM.style.opacity = "0"; slot.style.width = "";
+    const wM = gM.getBoundingClientRect().width;
+    alignN();
+    const wN = gN.getBoundingClientRect().width;
+    const sx = slot.getBoundingClientRect().left - box.left;
+    const base = bl.getBoundingClientRect().top - box.top;
+    const ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = `900 ${fs}px "Alumni Sans"`;
+    const cap = ctx.measureText("N").actualBoundingBoxAscent || fs * .7;
+    const ww = .14 * fs, wh = .26 * fs, fy = base - wh;
+    const offR = box.width + ww * 2, speed = 1.7 * fs;   // px per second
+    const glyphs = [gN, gM];
+    const crew = document.createElement("div"); crew.className = "crew"; crew.setAttribute("aria-hidden", "true");
+    h1.append(crew);
+
+    const add = (cls, html) => { const el = document.createElement("div"); el.className = cls; el.innerHTML = html || ""; crew.append(el); return el; };
+    const mk = name => { const el = add("worker", FIG); const w = {el, x: offR, face: -1, name}; place(w); return w; };
+    const place = w => { w.el.style.transform = T(w.x, fy); w.el.querySelector(".fig").style.transform = w.face < 0 ? "scaleX(-1)" : ""; };
+    const pose = (w, p) => { w.el.className = "worker" + (p ? " " + p : ""); };
+    const face = (w, d) => { w.face = d; w.el.querySelector(".fig").style.transform = d < 0 ? "scaleX(-1)" : ""; };
+    const walk = async (w, x, opt = {}) => {
+      const d = x >= w.x ? 1 : -1; if (!opt.keepFace) face(w, d);
+      pose(w, opt.pose || "walk");
+      const dur = opt.dur || Math.max(350, Math.abs(x - w.x) / speed * 1000);
+      await w.el.animate([{transform: T(w.x, fy)}, {transform: T(x, fy)}], {duration: dur, easing: opt.e || "linear", fill: "forwards", delay: opt.delay || 0}).finished;
+      w.x = x; w.el.style.transform = T(x, fy); w.el.getAnimations().forEach(a => a.cancel());
+      pose(w, opt.end || "");
+    };
+    const say = async (w, text, ms = 1300) => {
+      const b = add("bubble"); b.textContent = text;
+      const x = w.x + ww * .3, y = fy - 34;
+      b.style.transform = T(x, y);
+      await b.animate([{opacity: 0, transform: T(x, y + 6)}, {opacity: 1, transform: T(x, y)}], {duration: 180, fill: "forwards"}).finished;
+      await wait(ms);
+      await b.animate([{opacity: 1}, {opacity: 0}], {duration: 200, fill: "forwards"}).finished; b.remove();
+    };
+    const burst = (cls, x, y, n, spread, dur) => Promise.all(Array.from({length: n}, (_, i) => {
+      const p = add(cls), a = (i / n) * Math.PI - Math.PI, dx = Math.cos(a) * spread * (0.6 + Math.random() * .6), dy = Math.sin(a) * spread * .5;
+      const rot = cls === "spark" ? `rotate(${a}rad)` : "";
+      return p.animate([{transform: T(x, y, rot + " scale(1)"), opacity: 1}, {transform: T(x + dx, y + dy, rot + " scale(.4)"), opacity: 0}],
+        {duration: dur, easing: "cubic-bezier(.2,.7,.3,1)", fill: "forwards"}).finished.then(() => p.remove());
+    }));
+
+    const A = mk("A"), B = mk("B"), C = mk("C");
+    const hook = add("hook", HOOK), hw = .05 * fs, hh = .07 * fs;
+    const hx = () => sx + (parseFloat(slot.style.width) * fs || wN) / 2 - hw / 2;
+    const above = box.top - h1.closest(".mast").getBoundingClientRect().top;
+    const high = -(above + base + fs * 1.2);              // well above the masthead, clipped away
+    hook.style.transform = T(sx + wN / 2 - hw / 2, high);
+
+    // 1. The crew walks in from the right; C drops a cone by the gap.
+    await Promise.all([
+      walk(A, sx - ww * 1.05, {}),
+      walk(B, sx + wN * .5 - ww * .2, {delay: 260}),
+      walk(C, sx + wN + ww * .25, {delay: 560})
+    ]);
+    face(A, 1); face(B, -1); face(C, -1);
+    const cone = add("cone", CONE), cw = .07 * fs, ch = .08 * fs;
+    const cx = sx + wN + ww * 1.5;
+    cone.animate([{transform: T(cx, base - ch, "scale(0)")}, {transform: T(cx, base - ch, "scale(1.15)")}, {transform: T(cx, base - ch, "scale(1)")}], {duration: 320, fill: "forwards"});
+    pose(A, "point");
+    // 2. The hook comes down onto the N.
+    const hookAt = y => T(sx + wN / 2 - hw / 2, y);
+    const topN = base - cap - hh * .7;
+    await hook.animate([{transform: hookAt(high)}, {transform: hookAt(topN)}], {duration: 950, easing: "cubic-bezier(.2,.8,.3,1)", fill: "forwards"}).finished;
+    pose(A, "lift"); pose(B, "lift");
+    await wait(380);
+    // 3. Up goes the N, swinging a little.
+    const lift = high - topN;
+    await Promise.all([
+      hook.animate([{transform: hookAt(topN)}, {transform: hookAt(topN + lift)}], {duration: 1700, easing: "cubic-bezier(.5,0,.8,.6)", fill: "forwards"}).finished,
+      gN.animate([
+        {transform: "translateY(0) rotate(0)", opacity: 1},
+        {transform: `translateY(${lift * .18}px) rotate(-4deg)`, offset: .25},
+        {transform: `translateY(${lift * .5}px) rotate(3deg)`, offset: .6},
+        {transform: `translateY(${lift}px) rotate(-2deg)`, opacity: 1}
+      ], {duration: 1700, easing: "cubic-bezier(.5,0,.8,.6)", fill: "forwards"}).finished
+    ]);
+    pose(A, ""); pose(B, "");
+    // 4. The M is wider. C pushes ING along while B points at the gap.
+    await say(B, "M is wider.", 900);
+    face(C, 1);
+    const pushX = sx + wN - ww * .95;
+    await walk(C, pushX, {dur: 420, end: "push"});
+    face(C, 1); pose(C, "push walk");
+    await Promise.all([
+      slot.animate([{width: wN / fs + "em"}, {width: wM / fs + "em"}], {duration: 1200, easing: "ease-in-out", fill: "forwards"}).finished,
+      C.el.animate([{transform: T(pushX, fy)}, {transform: T(pushX + (wM - wN), fy)}], {duration: 1200, easing: "ease-in-out", fill: "forwards"}).finished
+        .then(() => { C.x = pushX + (wM - wN); }),
+      cone.animate([{transform: T(cx, base - ch)}, {transform: T(cx + (wM - wN), base - ch)}], {duration: 1200, easing: "ease-in-out", fill: "forwards"}).finished
+    ]);
+    slot.style.width = wM / fs + "em";
+    slot.getAnimations().forEach(a => a.cancel());
+    C.el.getAnimations().forEach(a => a.cancel()); place(C); pose(C, "");
+    // B steps clear to the left of the gap.
+    await walk(B, sx - ww * .1 - ww, {dur: 520});
+    face(B, 1);
+    // 5. The M comes down on the hook and settles in.
+    const mHook = y => T(sx + wM / 2 - hw / 2, y);
+    const drop = topN - (topN + lift);                       // distance from high to resting
+    pose(A, "lift"); pose(B, "lift");
+    gM.style.opacity = "1";
+    const land = {duration: 1800, easing: "cubic-bezier(.15,.6,.3,1)", fill: "forwards"};
+    await Promise.all([
+      hook.animate([{transform: mHook(topN + lift)}, {transform: mHook(topN)}], land).finished,
+      gM.animate([
+        {transform: `translateY(${-drop}px) rotate(3deg)`},
+        {transform: `translateY(${-drop * .35}px) rotate(-3deg)`, offset: .55},
+        {transform: `translateY(${-drop * .06}px) rotate(1deg)`, offset: .85},
+        {transform: "translateY(0) rotate(0)"}
+      ], land).finished
+    ]);
+    gM.animate([{transform: "scaleY(1)"}, {transform: "scaleY(.93)"}, {transform: "scaleY(1)"}], {duration: 260, easing: "ease-out"});
+    gM.style.transformOrigin = "50% 100%";
+    burst("puff", sx + wM / 2, base - .02 * fs, 9, wM * .9, 700);
+    pose(A, ""); pose(B, "");
+    await hook.animate([{transform: mHook(topN)}, {transform: mHook(topN + lift)}], {duration: 800, easing: "ease-in", fill: "forwards"}).finished;
+    // 6. A hammers it home.
+    await walk(A, sx + wM * .12, {dur: 600});
+    face(A, 1); pose(A, "hammer");
+    for (let i = 0; i < 3; i++) { await wait(220); burst("spark", A.x + ww * 1.05, base - .03 * fs, 5, .12 * fs, 320); }
+    await wait(240); pose(A, "");
+    // 7. Done. Cheer, pick up the cone, walk off.
+    const cheer = say(C, "Good as new.", 1000);
+    [A, B, C].forEach(w => pose(w, "cheer"));
+    await cheer;
+    cone.animate([{opacity: 1}, {opacity: 0, transform: cone.style.transform + " scale(.4)"}], {duration: 220, fill: "forwards"});
+    await Promise.all([walk(C, offR, {}), walk(A, offR, {delay: 200}), walk(B, offR, {delay: 420})]);
+
+    crew.remove();
+    glyphs.forEach(g => { g.getAnimations().forEach(a => a.cancel()); g.style.opacity = ""; g.style.transformOrigin = ""; g.style.top = ""; });
+    slot.classList.remove("swap"); slot.style.width = "";
+    running = false; replay.disabled = false;
+  }
+
+  replay.hidden = false;
+  replay.addEventListener("click", run);
+  // Start once the masthead is actually on screen in a visible tab.
+  const start = () => {
+    if (document.visibilityState !== "visible") return document.addEventListener("visibilitychange", start, {once: true});
+    setTimeout(run, 700);
+  };
+  // Show the old N straight away so the swap reads from the first frame.
+  slot.classList.add("swap"); gM.style.opacity = "0";
+  slot.style.width = "0.5em";
+  fontLoaded().then(() => { slot.style.width = ""; alignN(); start(); });
+})();
+</script>
+
+</body>
+</html>

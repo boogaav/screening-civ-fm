@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://screening.civ.fm/sitemap.xml
